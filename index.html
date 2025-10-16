@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luggage Calculator</title>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <h1>Airline Luggage Calculator</h1>
+
+  <form>
+    <div class="container">
+      <div class="radio-tile-group">
+        <div class="input-container">
+          <input id="user" type="radio" name="radio" />
+          <label class="radio-tile" for="user">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            <div>User</div>
+          </label>
+        </div>
+        <div class="input-container">
+          <input id="admin" type="radio" name="radio" />
+          <label class="radio-tile" for="admin">
+            <ion-icon name="cog-outline"></ion-icon>
+            <div>Admin</div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <label class="custom-field">
+      <input type="email" id="eMail" placeholder=" " required />
+      <span class="placeholder">Enter E-Mail</span>
+    </label>
+
+    <label class="custom-field">
+      <input type="password" id="passWord" placeholder=" " required />
+      <span class="placeholder">Enter Password</span>
+    </label>
+
+  </form>
+
+  <div class="button-container">
+    <button id="loginBtn" class="rightSlide">Log In</button>
+    <button id="signdirectBtn" class="leftSlide" onclick="window.location.href='sign.html'">Sign Up</button>
+  </div>
+
+  <!-- Message Popup Container -->
+  <div id="messagePopup" class="message-popup">
+    <div class="message-content">
+      <span id="messageText"></span>
+    </div>
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script type="module" src="firebaseauth.js"></script>
+</body>
+</html>

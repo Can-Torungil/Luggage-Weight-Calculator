@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Calculator Menu</title>
+    <link rel="stylesheet" href="menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <div class="tab-layout">
+        <!-- Top-level tabs: Calculator, History, Admin -->
+        <div class="tab-bar">
+            <div class="username-rectangle" id="username-display">
+                <span class="username-text">Loading...</span>
+            </div>
+            <ul class="tabs">  
+                <li data-tab-target="#calculator" class="active tab calculator-tab">Calculator</li>
+                <li data-tab-target="#history" class="tab">History</li>
+                <li data-tab-target="#admin" class="tab admin-tab">Admin</li>
+            </ul>
+            <button class="go-back-btn" onclick="goBack()">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </button>
+        </div>
+
+        <!-- Tab content for top-level tabs -->
+        <div class="tab-content">
+            <!-- Calculator Tab -->
+            <div id="calculator" data-tab-content class="active">
+                <div class="dropdown-container">
+                    <!-- Airline Dropdown -->
+                    <div class="dropdown airline-dropdown">
+                        <div class="select">
+                            <span class="selected">Select an Airline</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menu">
+                            <!-- Dynamically populated by JavaScript -->
+                        </ul>
+                    </div>
+                    <!-- Class Dropdown -->
+                    <div class="dropdown class-dropdown">
+                        <div class="select">
+                            <span class="selected">Select a Class</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menu">
+                            <!-- Dynamically populated by JavaScript -->
+                        </ul>
+                    </div>
+                    <!-- Origin Dropdown -->
+                    <div class="dropdown origin-dropdown">
+                        <div class="select">
+                            <span class="selected">Select an Origin</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menu">
+                            <li class="search-container">
+                                <div class="search-box">
+                                    <ion-icon name="search"></ion-icon>
+                                    <input type="text" class="search-input" placeholder="Search countries...">
+                                </div>
+                            </li>
+                            <!-- Will be populated later -->
+                        </ul>
+                    </div>
+                    <!-- Arrow Icon -->
+                    <div class="arrow-icon">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </div>
+                    <!-- Destination Dropdown -->
+                    <div class="dropdown destination-dropdown">
+                        <div class="select">
+                            <span class="selected">Select a Destination</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menu">
+                            <li class="search-container">
+                                <div class="search-box">
+                                    <ion-icon name="search"></ion-icon>
+                                    <input type="text" class="search-input" placeholder="Search countries...">
+                                </div>
+                            </li>
+                            <!-- Will be populated later -->
+                        </ul>
+                    </div>
+                    <!-- Flight Type Radio Buttons -->
+                    <div class="container flight-type-container">
+                        <div class="radio-tile-group">
+                            <div class="input-container">
+                                <input id="domestic" type="radio" name="flight-type" class="radio-input">
+                                <label class="radio-tile" for="domestic">
+                                    <ion-icon name="paper-plane-outline"></ion-icon>
+                                    <div>Domestic</div>
+                                </label>
+                            </div>
+                            <div class="input-container">
+                                <input id="international" type="radio" name="flight-type" class="radio-input">
+                                <label class="radio-tile" for="international">
+                                    <ion-icon name="earth-outline"></ion-icon>
+                                    <div class="smaller-text">International</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Trip Type Radio Buttons -->
+                    <div class="container trip-type-container">
+                        <div class="radio-tile-group">
+                            <div class="input-container">
+                                <input id="outbound" type="radio" name="trip-type" class="radio-input">
+                                <label class="radio-tile" for="outbound">
+                                    <ion-icon name="trending-up-outline"></ion-icon>
+                                    <div>Outbound</div>
+                                </label>
+                            </div>
+                            <div class="input-container">
+                                <input id="inbound" type="radio" name="trip-type" class="radio-input">
+                                <label class="radio-tile" for="inbound">
+                                    <ion-icon name="trending-down-outline"></ion-icon>
+                                    <div>Inbound</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add and Calculate Buttons -->
+                    <div class="button-container">
+                        <button id="addBtn" class="leftSlide">Add</button>
+                        <button id="calculateBtn" class="rightSlide">Calculate</button>
+                    </div>
+                    <!-- Added Objects Container -->
+                    <div id="added-objects-container"></div>
+                    <!-- Piece System Notification Box -->
+                    <div id="piece-system-notification" class="notification-box">
+                        <div class="notification-content"></div>
+                    </div>
+                    <!-- Calculate Results Display -->
+                    <div id="calculate-results">
+                        <div id="calculation-result-box"></div>
+                        <div id="limit-result-box"></div>
+                    </div>
+                    
+                    <!-- Error Box Display -->
+                    <div id="error-box" class="error-box" style="display: none;">
+                        <div class="error-box-inner">
+                            <div class="error-text">Please fill in information regarding flight and luggage before attempting to calculate.</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Analytics Results Display -->
+                    <div id="analytics-results">
+                        <div id="average-weight-box"></div>
+                        <div id="return-weight-box"></div>
+                    </div>
+                </div>
+                <!-- Add Segment Section -->
+                <div id="addSegment" class="add-segment">
+                    <div class="segment-cell-list">
+                        <button id="segmentGoBack" class="segment-cell segment-go-back">
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                        </button>
+                        <ul class="segment-tabs">
+                            <li data-tab-target="#clothes" class="segment-cell segment-tab active">
+                                <span class="segment-label">Clothes</span>
+                                <ion-icon name="shirt"></ion-icon>
+                            </li>
+                            <li data-tab-target="#shoes" class="segment-cell segment-tab">
+                                <span class="segment-label">Shoes</span>
+                                <ion-icon name="footsteps"></ion-icon>
+                            </li>
+                            <li data-tab-target="#electronics" class="segment-cell segment-tab">
+                                <span class="segment-label">Electronics</span>
+                                <ion-icon name="tablet-landscape"></ion-icon>
+                            </li>
+                            <li data-tab-target="#accessories" class="segment-cell segment-tab">
+                                <span class="segment-label">Accessories</span>
+                                <ion-icon name="flashlight"></ion-icon>
+                            </li>
+                            <li data-tab-target="#food-liquid" class="segment-cell segment-tab">
+                                <span class="segment-label">Food and Liquid</span>
+                                <ion-icon name="fast-food-outline"></ion-icon>
+                            </li>
+                            <li data-tab-target="#baby-items" class="segment-cell segment-tab">
+                                <span class="segment-label">Baby Items</span>
+                                <ion-icon name="happy"></ion-icon>
+                            </li>
+                            <li data-tab-target="#camping-travel" class="segment-cell segment-tab">
+                                <span class="segment-label">Camping and Travel</span>
+                                <ion-icon name="walk-outline"></ion-icon>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="segment-tab-content">
+                        <div id="clothes" data-tab-content class="active"></div>
+                        <div id="shoes" data-tab-content></div>
+                        <div id="electronics" data-tab-content></div>
+                        <div id="accessories" data-tab-content></div>
+                        <div id="food-liquid" data-tab-content></div>
+                        <div id="baby-items" data-tab-content></div>
+                        <div id="camping-travel" data-tab-content></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Tab -->
+            <div id="history" data-tab-content>
+                <!-- Three equal sections horizontally divided -->
+                <div class="history-sections">
+                    <!-- Section 1: Items Added Most -->
+                    <div class="history-section-column">
+                        <div class="history-section">
+                            <div class="history-section-title">Items Added Most</div>
+                            <div id="items-added-most-content" class="history-section-content">
+                                <!-- Content will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <!-- Section 4: Countries Used Most -->
+                        <div class="history-section">
+                            <div class="history-section-title">Countries Used Most</div>
+                            <div class="history-section-content">
+                                <!-- Origin Countries Sub-section -->
+                                <div class="flight-subsection">
+                                    <div class="flight-subsection-title">Top 10 Countries Departed From Most</div>
+                                    <div id="countries-departed-most" class="flight-subsection-content">
+                                        <!-- Content will be populated by JavaScript -->
+                                    </div>
+                                </div>
+                                
+                                <!-- Destination Countries Sub-section -->
+                                <div class="flight-subsection">
+                                    <div class="flight-subsection-title">Top 10 Countries Traveled Most To</div>
+                                    <div id="countries-traveled-most" class="flight-subsection-content">
+                                        <!-- Content will be populated by JavaScript -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 2: Recent Flights -->
+                    <div class="history-section">
+                        <div class="history-section-title">Recent Flights: Outbound and Inbound</div>
+                        <div class="history-section-content">
+                            <!-- Inbound Flights Sub-section -->
+                            <div class="flight-subsection">
+                                <div class="flight-subsection-title">Most Recent Inbound Flights</div>
+                                <div id="recent-inbound-flights" class="flight-subsection-content">
+                                    <!-- Content will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <!-- Outbound Flights Sub-section -->
+                            <div class="flight-subsection">
+                                <div class="flight-subsection-title">Most Recent Outbound Flights</div>
+                                <div id="recent-outbound-flights" class="flight-subsection-content">
+                                    <!-- Content will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 3: Recent Flights by Type -->
+                    <div class="history-section">
+                        <div class="history-section-title">Recent Flights: International and Domestic</div>
+                        <div class="history-section-content">
+                            <!-- International Flights Sub-section -->
+                            <div class="flight-subsection">
+                                <div class="flight-subsection-title">Most Recent International Flights</div>
+                                <div id="recent-international-flights" class="flight-subsection-content">
+                                    <!-- Content will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <!-- Domestic Flights Sub-section -->
+                            <div class="flight-subsection">
+                                <div class="flight-subsection-title">Most Recent Domestic Flights</div>
+                                <div id="recent-domestic-flights" class="flight-subsection-content">
+                                    <!-- Content will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 5: Policy Violations - spans sections 2 and 3 width -->
+                    <div class="history-section-wide">
+                        <div class="history-section-title">Policy Violations</div>
+                        <div id="policy-violations-content" class="history-section-content">
+                            <!-- Content will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Admin Tab with Sub-Tabs -->
+            <div id="admin" data-tab-content>
+                <div class="nested-tab-bar">
+                    <ul class="tabs nested-tabs">
+                        <li data-tab-target="#modify" class="active tab">Modify</li>
+                        <li data-tab-target="#analytics" class="tab">Analytics</li>
+                    </ul>
+                </div>
+                <div class="nested-tab-content">
+                    <div id="modify" data-tab-content class="active">
+                        <!-- Header Row -->
+                        <div class="modify-header-row">
+                            <span class="modify-header-text">The Add Menu</span>
+                        </div>
+                        
+                        <!-- Add Segment Section (Full Screen) -->
+                        <div id="modifyAddSegment" class="modify-add-segment">
+                            <div class="segment-cell-list">
+                                <ul class="segment-tabs">
+                                    <li data-tab-target="#modify-clothes" class="segment-cell segment-tab active">
+                                        <span class="segment-label">Clothes</span>
+                                        <ion-icon name="shirt"></ion-icon>
+                                    </li>
+                                    <li data-tab-target="#modify-shoes" class="segment-cell segment-tab">
+                                        <span class="segment-label">Shoes</span>
+                                        <ion-icon name="footsteps"></ion-icon>
+                                    </li>
+                                    <li data-tab-target="#modify-electronics" class="segment-cell segment-tab">
+                                        <span class="segment-label">Electronics</span>
+                                        <ion-icon name="tablet-landscape"></ion-icon>
+                                    </li>
+                                    <li data-tab-target="#modify-accessories" class="segment-cell segment-tab">
+                                        <span class="segment-label">Accessories</span>
+                                        <ion-icon name="flashlight"></ion-icon>
+                                    </li>
+                                    <li data-tab-target="#modify-food-liquid" class="segment-cell segment-tab">
+                                        <span class="segment-label">Food and Liquid</span>
+                                        <ion-icon name="fast-food-outline"></ion-icon>
+                                    </li>
+                                    <li data-tab-target="#modify-baby-items" class="segment-cell segment-tab">
+                                        <span class="segment-label">Baby Items</span>
+                                        <ion-icon name="happy"></ion-icon>
+                                    </li>
+                                    <li data-tab-target="#modify-camping-travel" class="segment-cell segment-tab">
+                                        <span class="segment-label">Camping and Travel</span>
+                                        <ion-icon name="walk-outline"></ion-icon>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="segment-tab-content">
+                                <div id="modify-clothes" data-tab-content class="active"></div>
+                                <div id="modify-shoes" data-tab-content></div>
+                                <div id="modify-electronics" data-tab-content></div>
+                                <div id="modify-accessories" data-tab-content></div>
+                                <div id="modify-food-liquid" data-tab-content></div>
+                                <div id="modify-baby-items" data-tab-content></div>
+                                <div id="modify-camping-travel" data-tab-content></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="analytics" data-tab-content>
+                        <!-- Title Row -->
+                        <div class="analytics-header-row">
+                            <span class="analytics-header-text">Analytics of All Users</span>
+                        </div>
+                        
+                        <!-- Three Analytics Sections -->
+                        <div class="analytics-sections">
+                            <!-- Section 1: Average Luggage Weight Across All Users -->
+                            <div class="analytics-section">
+                                <div class="analytics-section-title">Average Luggage Weight Across All Users</div>
+                                <div id="weight-ranges-content" class="analytics-section-content">
+                                    <!-- Content will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <!-- Section 2-3 Combined: Most Common Policy Violations Across All Airlines -->
+                            <div class="analytics-section-wide">
+                                <div class="analytics-section-title">Most Common Policy Violations Across All Airlines</div>
+                                <div id="policy-violations-analytics-content" class="analytics-section-content">
+                                    <!-- Content will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="tabMenu.js"></script>
+</body>
+</html>
