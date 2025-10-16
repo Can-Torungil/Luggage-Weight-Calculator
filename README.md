@@ -120,10 +120,6 @@ The application uses Firebase for backend services. The Firebase configuration i
 
 
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 👥 Authors
 
 - **Can Torungil** - *Initial work* - [Can-Torungil](https://github.com/Can-Torungil)
