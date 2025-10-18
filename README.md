@@ -1,44 +1,44 @@
-# 🧳 Luggage Weight Calculator
+#  Luggage Weight Calculator
 
-A comprehensive web application that helps travelers calculate luggage weight limits for different airlines, flight classes, and destinations. Built with Firebase authentication and modern web technologies.
+A  web application that helps travelers calculate luggage weight limits for different airlines, flight classes, and destinations. Built with Firebase authentication and modern web technologies.
 
-## 🌟 Features
+##  Features
 
-### 🔐 User Authentication
+###  User Authentication
 - **Dual User Types**: Regular users and administrators with different access levels
 - **Firebase Integration**: Secure authentication with email/password
 - **Session Management**: Persistent login sessions with localStorage
 
-### ✈️ Flight Configuration
+###  Flight Configuration
 - **Airline Selection**: Support for multiple airlines with specific weight policies
 - **Class Selection**: Economy, Business, and First Class options
 - **Route Configuration**: Origin and destination country selection
 - **Flight Type**: Domestic vs International flight differentiation
 - **Trip Direction**: Outbound vs Inbound flight tracking
 
-### 📦 Luggage Management
+###  Luggage Management
 - **Categorized Items**: 7 main categories for organized packing
-  - 👕 **Clothes**: Shirts, pants, jackets, etc.
-  - 👟 **Shoes**: Various footwear types
-  - 💻 **Electronics**: Laptops, phones, tablets, etc.
-  - 🔦 **Accessories**: Watches, umbrellas, etc.
-  - 🍎 **Food and Liquid**: Beverages, snacks, etc.
-  - 👶 **Baby Items**: Strollers, car seats, etc.
-  - 🏕️ **Camping and Travel**: Gear and equipment
+  -  **Clothes**: Shirts, pants, jackets, etc.
+  -  **Shoes**: Various footwear types
+  -  **Electronics**: Laptops, phones, tablets, etc.
+  -  **Accessories**: Watches, umbrellas, etc.
+  -  **Food and Liquid**: Beverages, snacks, etc.
+  -  **Baby Items**: Strollers, car seats, etc.
+  -  **Camping and Travel**: Gear and equipment
 
-### 📊 Analytics & History
+###  Analytics & History
 - **Usage Statistics**: Track most frequently added items
 - **Flight History**: Recent outbound/inbound flights
 - **Country Analytics**: Most traveled destinations
 - **Policy Violations**: Track weight limit violations
 - **Weight Analytics**: Average luggage weights across users
 
-### 👨‍💼 Admin Features
+###  Admin Features
 - **Item Management**: Add, modify, or remove items from categories
 - **Global Analytics**: System-wide usage statistics
 - **Policy Violation Tracking**: Monitor common violations across all airlines
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Modern web browser (Chrome, Firefox, Safari, Edge)
@@ -64,7 +64,7 @@ The application uses Firebase for backend services. The Firebase configuration i
 
 
 
-## 📱 Usage
+##  Usage
 
 ### 1. **Account Creation/Login**
 - Visit the application homepage
@@ -91,7 +91,7 @@ The application uses Firebase for backend services. The Firebase configuration i
 - Access historical data and analytics
 
 
-## 🔧 Technical Details
+##  Technical Details
 
 ### Frontend Technologies
 - **HTML5**: Semantic markup and structure
@@ -110,7 +110,7 @@ The application uses Firebase for backend services. The Firebase configuration i
 - **Offline Capability**: Local storage for session management
 - **Error Handling**: Comprehensive error messages and validation
 
-## 📊 Database Schema
+##  Database Schema
 
 
 
@@ -128,6 +128,6 @@ The application uses Firebase for backend services. The Firebase configuration i
 
 ---
 
-**Happy Traveling! ✈️🧳**
+**Happy Traveling!**
 
 *Made with ❤️ for travelers worldwide*
