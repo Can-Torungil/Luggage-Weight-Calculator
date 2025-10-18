@@ -43,7 +43,8 @@ A  web application that helps travelers calculate luggage weight limits for diff
 ### Prerequisites
 - Modern web browser (Chrome, Firefox, Safari, Edge)
 - Internet connection (for Firebase services)
-- No additional software installation required
+- Visual Studio Code (recommended) with Live Server extension
+- Or Node.js for terminal-based local server
 
 ### Installation
 
@@ -53,10 +54,33 @@ A  web application that helps travelers calculate luggage weight limits for diff
    cd Luggage-Weight-Calculator
    ```
 
-2. **Open the application**
+2. **Run the application**
+
+   **Option A: Using Visual Studio Code (Recommended)**
+   - Open the project folder in Visual Studio Code
+   - Install the "Live Server" extension if not already installed
+   - Right-click on `index.html` and select "Open with Live Server"
+   - The application will automatically open in your default browser
+
+   **Option B: Using Terminal/Command Line**
    - Navigate to the project directory
-   - Open `index.html` in your web browser
-   - Or use a local web server for better performance
+   - Use Python's built-in server:
+     ```bash
+     # For Python 3
+     python -m http.server 8000
+     
+     # For Python 2
+     python -m SimpleHTTPServer 8000
+     ```
+   - Or use Node.js http-server:
+     ```bash
+     # Install http-server globally (one-time setup)
+     npm install -g http-server
+     
+     # Run the server
+     http-server
+     ```
+   - Open your browser and navigate to `http://localhost:8000` or the port shown in terminal
 
 ### 🔧 Configuration
 
